@@ -3,7 +3,7 @@
  * @version 1.2
  * @author David
  */
-var morphCodes = {
+exports.morphCodes = {
 	'partOfSpeech': {
 		'A': 'Adjective',
 		'C': 'Conjunction',

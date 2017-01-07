@@ -4,24 +4,29 @@
  * @version 1.2
  * @author David
  */
-var MorphParse = function()
-{
+var morphCodes = require("./MorphCodes").morphCodes;
+
 	var language;
     /**
      * Parses the given code.
      * @param {string} code A morph code
      * @returns (string} The morphology
      */
-    this.Parse = function(code)
+    exports.Parse = function(code)
     {
-		language = code.charAt(0);
-		code = code.substr(1);
-        var parts = code.split('/');
-        var morph = parseCode(parts[0]);
-        for (var i = 1; i < parts.length; i++) {
-            morph += ', ' + parseCode(parts[i]);
-        }
-        return morph;
+		if (code) {
+			language = code.charAt(0);
+			code = code.substr(1);
+			var parts = code.split('/');
+			var morph = parseCode(parts[0]);
+			for (var i = 1; i < parts.length; i++) {
+				morph += ', ' + parseCode(parts[i]);
+			}
+			return morph;
+		}
+		else {
+			return "";
+		}
     };
 
     var parseCode = function(code)
@@ -173,4 +178,4 @@ var MorphParse = function()
         var morph = morphCodes.state[code.charAt(pos)];
         return morph;
     };
-};
+
